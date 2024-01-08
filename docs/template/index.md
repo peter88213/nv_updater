@@ -1,4 +1,4 @@
-# nv_updater
+# noveltree_updater
 
 The [noveltree](https://peter88213.github.io/noveltree/) Python program helps authors organize novels.  
 
