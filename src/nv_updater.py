@@ -50,7 +50,7 @@ class CancelCheck(Exception):
 class Plugin:
     """Template plugin class."""
     VERSION = '@release'
-    NOVELYST_API = '1.0'
+    NOVELTREE_API = '1.0'
     DESCRIPTION = 'Update checker'
     URL = 'https://peter88213.github.io/noveltree_updater'
     _HELP_URL = 'https://peter88213.github.io/noveltree_updater/usage'
