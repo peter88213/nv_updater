@@ -94,23 +94,24 @@ class Plugin:
                 found = True
 
             # Check installed plugins.
-            for repoName in self._ctrl.plugins:
-                print(repoName)
+            for moduleName in self._ctrl.plugins:
+                print(moduleName)
                 try:
+                    repoName = self._ctrl.plugins[moduleName].URL.rsplit('/', maxsplit=1)[1]
                     # Latest version
                     majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
                     latest = (majorVersion, minorVersion, patchlevel)
                     print(f'Latest  : {latest}')
 
                     # Current version
-                    majorVersion, minorVersion, patchlevel = self._ctrl.plugins[repoName].VERSION.split('.')
+                    majorVersion, minorVersion, patchlevel = self._ctrl.plugins[moduleName].VERSION.split('.')
                     current = (int(majorVersion), int(minorVersion), int(patchlevel))
                     print(f'Current : {current}')
                 except:
                     continue
                 else:
                     if self._update_available(latest, current):
-                        self._download_update(repoName, downloadUrl)
+                        self._download_update(moduleName, downloadUrl)
                         found = True
             if not found:
                 messagebox.showinfo(_('Check for updates'), _('No updates available.'))

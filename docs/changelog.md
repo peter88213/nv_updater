@@ -4,6 +4,13 @@
 
 ## Changelog
 
+### v1.0.2
+
+-Fix a bug where plugin version information is not found on the web.
+
+Based on novxlib v1.0.0
+Compatibility: noveltree v1.0 API
+
 ### v1.0.1
 
 - Fix the plugin API version constant.
