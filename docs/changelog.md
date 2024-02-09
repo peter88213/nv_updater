@@ -4,6 +4,14 @@
 
 ## Changelog
 
+### v1.0.3
+
+- Switch the online help to https://peter88213.github.io/noveltree-help/.
+- Update German translation.
+
+Based on novxlib v1.0.0
+Compatibility: noveltree v1.0 API
+
 ### v1.0.2
 
 -Fix a bug where plugin version information is not found on the web.

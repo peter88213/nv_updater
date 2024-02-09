@@ -53,7 +53,7 @@ class Plugin:
     NOVELTREE_API = '1.0'
     DESCRIPTION = 'Update checker'
     URL = 'https://peter88213.github.io/noveltree_updater'
-    _HELP_URL = 'https://peter88213.github.io/noveltree_updater/usage'
+    _HELP_URL = 'https://peter88213.github.io/noveltree-help/noveltree_updater/'
 
     def install(self, model, view, controller, prefs):
         """Install the plugin and extend the noveltree user interface.
@@ -65,7 +65,7 @@ class Plugin:
         self._ui = view
 
         # Add an entry to the Help menu.
-        self._ui.helpMenu.add_command(label=_('nv_updater Online help'), command=lambda: webbrowser.open(self._HELP_URL))
+        self._ui.helpMenu.add_command(label=_('Update checker Online help'), command=lambda: webbrowser.open(self._HELP_URL))
 
         # Add an entry to the Tools menu.
         self._ui.toolsMenu.add_command(label=_('Check for updates'), command=self._check_for_updates)

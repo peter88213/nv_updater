@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.2\n"
-"POT-Creation-Date: 2024-01-13 19:22:11\n"
+"Project-Id-Version: 1.0.3\n"
+"POT-Creation-Date: 2024-02-09 08:56:37\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -29,5 +29,5 @@ msgstr ""
 msgid "Start your web browser for download?"
 msgstr ""
 
-msgid "nv_updater Online help"
+msgid "Update checker Online help"
 msgstr ""
