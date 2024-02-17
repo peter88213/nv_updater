@@ -24,6 +24,7 @@ os.makedirs(BUILD, exist_ok=True)
 
 
 def main():
+    os.makedirs(BUILD, exist_ok=True)
     inliner.run(SOURCE_FILE, TARGET_FILE, 'novxlib', '../../novxlib/src/')
     print('Done.')
 
