@@ -7,7 +7,7 @@ The novxlib project (see https://github.com/peter88213/novxlib)
 must be located on the same directory level as the nv_updater project. 
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree_updater
+For further information see https://github.com/peter88213/nv_updater
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
