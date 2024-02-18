@@ -50,10 +50,10 @@ class CancelCheck(Exception):
 class Plugin:
     """Template plugin class."""
     VERSION = '@release'
-    NOVELTREE_API = '1.0'
+    NOVELTREE_API = '1.8'
     DESCRIPTION = 'Update checker'
-    URL = 'https://peter88213.github.io/nv_updater'
-    _HELP_URL = 'https://peter88213.github.io/noveltree-help/nv_updater/'
+    URL = 'https://github.com/peter88213/nv_updater'
+    _HELP_URL = f'https://peter88213.github.io/{_("nvhelp-en")}/nv_updater/'
 
     def install(self, model, view, controller, prefs):
         """Install the plugin and extend the noveltree user interface.

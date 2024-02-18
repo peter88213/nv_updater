@@ -1,12 +1,33 @@
 # nv_updater
 
-An update checker plugin for [noveltree](https://peter88213.github.io/noveltree)
+The [noveltree](https://github.com/peter88213/noveltree/) Python program helps authors organize novels.  
 
-For more information, see the [project homepage](https://peter88213.github.io/nv_updater) with description and download instructions.
+*nv_updater* is a plugin providing an *on-demand* update checker for the *noveltree* program and the installed plugins.
 
-## Feedback? Ideas? Feature requests?
 
-You can go to the [noveltree "discussions" forum](https://github.com/peter88213/noveltree/discussions) and start a thread.
+
+![Screenshot](docs/Screenshots/screen01.png)
+
+## Requirements
+
+- [noveltree](https://github.com/peter88213/noveltree/) version 1.8+
+
+## Download and install
+
+[Download the latest release (version 1.1.0)](https://github.com/peter88213/nv_updater/raw/main/dist/nv_updater_v1.1.0.zip)
+
+- Extract the "nv_updater_v1.1.0" folder from the downloaded zipfile "nv_updater_v1.1.0.zip".
+- Move into this new folder and launch **setup.pyw**. This installs the plugin for the local user.
+
+---
+
+[Changelog](docs/changelog.md)
+
+## Usage
+
+See the [instructions for use](docs/usage.md)
+
+---
 
 ## License
 
