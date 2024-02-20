@@ -19,8 +19,8 @@ msgstr "Ein Update ist verfügbar für"
 msgid "Check for updates"
 msgstr "Auf Updates prüfen"
 
-msgid "No online update information for noveltree found."
-msgstr "Keine Online-Updateinformationen für noveltree gefunden."
+msgid "No online update information for novelibre found."
+msgstr "Keine Online-Updateinformationen für novelibre gefunden."
 
 msgid "No updates available."
 msgstr "Keine Updates verfügbar"

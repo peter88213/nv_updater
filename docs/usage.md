@@ -2,13 +2,13 @@
 
 --- 
 
-A [noveltree](https://github.com/peter88213/noveltree/) plugin providing an *on-demand* update checker for the *noveltree* program and the installed plugins. 
+A [novelibre](https://github.com/peter88213/novelibre/) plugin providing an *on-demand* update checker for the *novelibre* program and the installed plugins. 
 
 ---
 
 # Installation
 
-If [noveltree](https://github.com/peter88213/noveltree/) is installed, the setup script auto-installs the *nv_updater* plugin in the *noveltree* plugin directory.
+If [novelibre](https://github.com/peter88213/novelibre/) is installed, the setup script auto-installs the *nv_updater* plugin in the *novelibre* plugin directory.
 
 
 ---

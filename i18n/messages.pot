@@ -20,7 +20,7 @@ msgstr ""
 msgid "Check for updates"
 msgstr ""
 
-msgid "No online update information for noveltree found."
+msgid "No online update information for novelibre found."
 msgstr ""
 
 msgid "No updates available."

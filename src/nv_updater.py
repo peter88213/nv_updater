@@ -1,4 +1,4 @@
-"""An update checker plugin for noveltree.
+"""An update checker plugin for novelibre.
 
 Requires Python 3.6+
 Copyright (c) 2024 Peter Triesberger
@@ -56,7 +56,7 @@ class Plugin:
     _HELP_URL = f'https://peter88213.github.io/{_("nvhelp-en")}/nv_updater/'
 
     def install(self, model, view, controller, prefs):
-        """Install the plugin and extend the noveltree user interface.
+        """Install the plugin and extend the novelibre user interface.
         
         Positional arguments:
             view -- reference to the NoveltreeUi instance of the application.
@@ -71,17 +71,17 @@ class Plugin:
         self._ui.toolsMenu.add_command(label=_('Check for updates'), command=self._check_for_updates)
 
     def _check_for_updates(self):
-        """Check noveltree and all installed plugins for updates."""
+        """Check novelibre and all installed plugins for updates."""
         found = False
         print('Check for updates')
 
-        # Check noveltree.
-        repoName = 'noveltree'
+        # Check novelibre.
+        repoName = 'novelibre'
         print(repoName)
         try:
             majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
         except:
-            messagebox.showerror(_('Check for updates'), _('No online update information for noveltree found.'))
+            messagebox.showerror(_('Check for updates'), _('No online update information for novelibre found.'))
             return
 
         try:
@@ -90,7 +90,7 @@ class Plugin:
             current = (self._ctrl.plugins.majorVersion, self._ctrl.plugins.minorVersion, self._ctrl.plugins.patchlevel)
             print(f'Current : {current}')
             if self._update_available(latest, current):
-                self._download_update('noveltree', downloadUrl)
+                self._download_update('novelibre', downloadUrl)
                 found = True
 
             # Check installed plugins.
