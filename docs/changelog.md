@@ -4,6 +4,13 @@
 
 ## Changelog
 
+### v3.0.0
+
+- Refactor the code for v3.0 API.
+- Enable the online help in German.
+
+Compatibility: novelibre v3.0 API
+
 ### v2.1.0
 
 Update for "novelibre".
