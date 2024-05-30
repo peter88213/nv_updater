@@ -25,6 +25,8 @@ from tkinter import messagebox
 from urllib.request import urlopen
 import webbrowser
 
+from nvlib.plugin.plugin_base import PluginBase
+
 # Initialize localization.
 LOCALE_PATH = f'{os.path.dirname(sys.argv[0])}/locale/'
 try:
@@ -47,10 +49,10 @@ class CancelCheck(Exception):
     pass
 
 
-class Plugin:
+class Plugin(PluginBase):
     """Template plugin class."""
     VERSION = '@release'
-    API_VERSION = '4.0'
+    API_VERSION = '4.3'
     DESCRIPTION = 'Update checker'
     URL = 'https://github.com/peter88213/nv_updater'
     _HELP_URL = f'https://peter88213.github.io/{_("nvhelp-en")}/nv_updater/'
@@ -59,7 +61,12 @@ class Plugin:
         """Install the plugin and extend the novelibre user interface.
         
         Positional arguments:
-            view -- reference to the NoveltreeUi instance of the application.
+            model -- reference to the main model instance of the application.
+            view -- reference to the main view instance of the application.
+            controller -- reference to the main controller instance of the application.
+            prefs -- reference to the application's global dictionary with settings and options.
+        
+        Overrides the superclass method.
         """
         self._ctrl = controller
         self._ui = view
