@@ -79,9 +79,12 @@ class Plugin(PluginBase):
         # Add an entry to the Tools menu.
         self._ui.toolsMenu.add_command(label=_('Check for updates'), command=self._check_for_updates)
 
+        self.download = False
+
     def _check_for_updates(self):
         """Check novelibre and all installed plugins for updates."""
         found = False
+        self.download = False
         print('Check for updates')
 
         # Check novelibre.
@@ -127,6 +130,9 @@ class Plugin(PluginBase):
         except CancelCheck:
             # user pressed the "cancel" button
             pass
+        finally:
+            if self.download:
+                messagebox.showinfo(_('Check for updates'), _('Please restart novelibre after installing updates.'))
 
     def _download_update(self, repo, downloadUrl):
         """Start the web browser with downloadUrl on demand.
@@ -143,6 +149,7 @@ class Plugin(PluginBase):
         if answer:
             # user pressed the "Yes" button
             webbrowser.open(downloadUrl)
+            self.download = True
         elif answer is None:
             # user pressed the "Cancel" button
             raise CancelCheck

@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.1.1\n"
-"POT-Creation-Date: 2024-07-10 14:05:26\n"
-"PO-Revision-Date: 2024-07-10 14:05:26\n"
+"Project-Id-Version: 4.1.2\n"
+"POT-Creation-Date: 2024-07-19 07:22:11\n"
+"PO-Revision-Date: 2024-07-19 07:22:11\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -24,6 +24,9 @@ msgstr "Keine Online-Updateinformationen für novelibre gefunden."
 
 msgid "No updates available."
 msgstr "Keine Updates verfügbar"
+
+msgid "Please restart novelibre after installing updates."
+msgstr "Bitte starten Sie novelibre nach der Installation von Updates neu."
 
 msgid "Start your web browser for download?"
 msgstr "Den Webbrowser zum Download starten?"
