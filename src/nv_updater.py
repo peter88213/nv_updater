@@ -50,7 +50,7 @@ class CancelCheck(Exception):
 
 
 class Plugin(PluginBase):
-    """Template plugin class."""
+    """Plugin class for the novelibre update checker."""
     VERSION = '@release'
     API_VERSION = '4.3'
     DESCRIPTION = 'Update checker'
