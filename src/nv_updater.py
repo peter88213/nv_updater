@@ -25,8 +25,6 @@ from tkinter import messagebox
 from urllib.request import urlopen
 import webbrowser
 
-from nvlib.plugin.plugin_base import PluginBase
-
 # Initialize localization.
 LOCALE_PATH = f'{os.path.dirname(sys.argv[0])}/locale/'
 try:
@@ -47,6 +45,9 @@ except:
 class CancelCheck(Exception):
     """Exception used for cancelling the update check."""
     pass
+
+
+from nvlib.plugin.plugin_base import PluginBase
 
 
 class Plugin(PluginBase):
