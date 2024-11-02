@@ -57,7 +57,7 @@ class Plugin(PluginBase):
     URL = 'https://github.com/peter88213/nv_updater'
     _HELP_URL = f'https://peter88213.github.io/{_("nvhelp-en")}/nv_updater/'
 
-    def install(self, model, view, controller, prefs=None):
+    def install(self, model, view, controller):
         """Install the plugin and extend the novelibre user interface.
         
         Positional arguments:
