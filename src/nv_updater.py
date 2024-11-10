@@ -52,7 +52,7 @@ class CancelCheck(Exception):
 class Plugin(PluginBase):
     """Plugin class for the novelibre update checker."""
     VERSION = '@release'
-    API_VERSION = '4.3'
+    API_VERSION = '5.0'
     DESCRIPTION = 'Update checker'
     URL = 'https://github.com/peter88213/nv_updater'
     _HELP_URL = f'https://peter88213.github.io/{_("nvhelp-en")}/nv_updater/'
