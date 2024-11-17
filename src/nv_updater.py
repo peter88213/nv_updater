@@ -68,10 +68,9 @@ class Plugin(PluginBase):
         Optional arguments:
             prefs -- deprecated. Please use controller.get_preferences() instead.
         
-        Overrides the superclass method.
+        Extends the superclass method.
         """
-        self._ctrl = controller
-        self._ui = view
+        super().install(model, view, controller)
 
         # Add an entry to the Help menu.
         self._ui.helpMenu.add_command(label=_('Update checker Online help'), command=lambda: webbrowser.open(self._HELP_URL))
