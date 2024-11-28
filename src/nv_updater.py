@@ -21,7 +21,6 @@ import gettext
 import locale
 import os
 import sys
-from tkinter import messagebox
 from urllib.request import urlopen
 import webbrowser
 
@@ -92,7 +91,7 @@ class Plugin(PluginBase):
         try:
             majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
         except:
-            messagebox.showerror(_('Check for updates'), _('No online update information for novelibre found.'))
+            self._ui.show_error(_('No online update information for novelibre found.'), title=('Check for updates'))
             return
 
         try:
@@ -125,13 +124,13 @@ class Plugin(PluginBase):
                         self._download_update(moduleName, downloadUrl)
                         found = True
             if not found:
-                messagebox.showinfo(_('Check for updates'), _('No updates available.'))
+                self._ui.show_info(_('No updates available.'), title=_('Check for updates'))
         except CancelCheck:
             # user pressed the "cancel" button
             pass
         finally:
             if self.download:
-                messagebox.showinfo(_('Check for updates'), _('Please restart novelibre after installing updates.'))
+                self._ui.show_info(_('Please restart novelibre after installing updates.'), title=_('Check for updates'))
 
     def _download_update(self, repo, downloadUrl):
         """Start the web browser with downloadUrl on demand.
@@ -144,7 +143,7 @@ class Plugin(PluginBase):
             raise CancelCheck, if the update check is to be cancelled.
         """
         text = f'{_("An update is available for")} {repo}.\n{_("Start your web browser for download?")}'
-        answer = messagebox.askyesnocancel(_('Check for updates'), text)
+        answer = self._ui.ask_yes_no_cancel(text, title=_('Check for updates'))
         if answer:
             # user pressed the "Yes" button
             webbrowser.open(downloadUrl)
