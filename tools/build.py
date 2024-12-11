@@ -12,19 +12,14 @@ import sys
 sys.path.insert(0, f'{os.getcwd()}/../../novelibre/tools')
 from package_builder import PackageBuilder
 
-VERSION = '5.0.1'
+VERSION = '5.0.2'
 
 
 class PluginBuilder(PackageBuilder):
 
     PRJ_NAME = 'nv_updater'
-    LOCAL_LIB = 'nvupdaterlib'
+    LOCAL_LIB = 'nvupdater'
     GERMAN_TRANSLATION = True
-
-    def build_script(self):
-        os.makedirs(self.testDir, exist_ok=True)
-        self.inline_modules(self.sourceFile, self.testFile)
-        self.insert_version_number(self.testFile, version=self.version)
 
 
 def main():
