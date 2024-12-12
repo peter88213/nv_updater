@@ -45,7 +45,7 @@ class Plugin(PluginBase):
         self.updateManager = UpdateManager(model, view, controller)
 
         # Add an entry to the Help menu.
-        self._ui.helpMenu.add_command(label=_('Update checker Online help'), command=self.open_help_page)
+        self._ui.helpMenu.add_command(label=_('Update checker Online help'), command=self.open_help)
 
         # Add an entry to the Tools menu.
         self._ui.toolsMenu.add_command(label=_('Check for updates'), command=self.check_for_updates)
@@ -53,6 +53,6 @@ class Plugin(PluginBase):
     def check_for_updates(self):
         self.updateManager.check_for_updates()
 
-    def open_help_page(self, event=None):
+    def open_help(self, event=None):
         webbrowser.open(self.HELP_URL)
 
