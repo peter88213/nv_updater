@@ -8,7 +8,7 @@ import configparser
 from urllib.request import urlopen
 import webbrowser
 
-from mvclib.controller.service_base import ServiceBase
+from nvlib.controller.services.service_base import ServiceBase
 from nvupdater.nvupdater_locale import _
 
 
