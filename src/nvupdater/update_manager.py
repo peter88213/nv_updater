@@ -63,6 +63,7 @@ class UpdateManager(ServiceBase):
                     print(f'Current : {current}')
                 except:
                     continue
+
                 else:
                     if self._update_available(latest, current):
                         self._download_update(moduleName, downloadUrl)
