@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/nv_updater
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import configparser
+import os
 from urllib.request import urlopen
 import webbrowser
 
@@ -51,7 +52,7 @@ class UpdateManager(ServiceBase):
             for moduleName in self._ctrl.plugins:
                 print(moduleName)
                 try:
-                    repoName = self._ctrl.plugins[moduleName].URL.rsplit('/', maxsplit=1)[1]
+                    repoName = os.path.basename(self._ctrl.plugins[moduleName].URL)
                     # Latest version
                     majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
                     latest = (majorVersion, minorVersion, patchlevel)
