@@ -40,21 +40,8 @@ class UpdateManagerDialog(ModalDialog, UpdateManagerCtrl):
         self.moduleCollection.column('Latest version', width=100, minwidth=100, stretch=False)
         self.moduleCollection.heading('Latest version', text=_('Latest version'), anchor='w')
 
-        for moduleName in self._ctrl.plugins:
-            nodeTags = []
-            try:
-                installedVersion = self._ctrl.plugins[moduleName].VERSION
-            except AttributeError:
-                installedVersion = _('unknown')
-            latestVersion = f"{_('wait')} ..."
-            columns = [moduleName, installedVersion, latestVersion]
-            if self._ctrl.plugins[moduleName].isRejected:
-                nodeTags.append('rejected')
-                # Mark rejected modules, represented by a dummy.
-            elif not self._ctrl.plugins[moduleName].isActive:
-                nodeTags.append('inactive')
-                # Mark loaded yet incompatible modules.
-            self.moduleCollection.insert('', 'end', moduleName, values=columns, tags=tuple(nodeTags))
+        # Populate the list.
+        self.build_module_list()
 
         self._footer = ttk.Frame(self)
         self._footer.pack(fill='both', expand=False)

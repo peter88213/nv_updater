@@ -42,19 +42,18 @@ class UpdateManager(ServiceBase):
             return
 
         try:
+            moduleName = 'novelibre'
             latest = (majorVersion, minorVersion, patchlevel)
             latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
-            self.updaterDialog.output(f'Latest  : {latestStr}')
             current = (self._ctrl.plugins.majorVersion, self._ctrl.plugins.minorVersion, self._ctrl.plugins.patchlevel)
             currentStr = f'{self._ctrl.plugins.majorVersion}.{self._ctrl.plugins.minorVersion}.{self._ctrl.plugins.patchlevel}'
-            self.updaterDialog.output(f'Current : {currentStr}')
+            self.updaterDialog.moduleCollection.item(moduleName, values=[moduleName, currentStr, latestStr])
             if self._update_available(latest, current):
-                self._download_update('novelibre', downloadUrl)
+                # self._download_update(moduleName, downloadUrl)
                 found = True
 
             # Check installed plugins.
             for moduleName in self._ctrl.plugins:
-                self.updaterDialog.output(moduleName)
                 try:
                     repoName = os.path.basename(self._ctrl.plugins[moduleName].URL)
                     # Latest version

@@ -13,6 +13,30 @@ from nvupdater.nvupdater_locale import _
 
 class UpdateManagerCtrl(SubController):
 
+    def build_module_list(self):
+        appValues = [
+            'novelibre',
+            f'{self._ctrl.plugins.majorVersion}.{self._ctrl.plugins.minorVersion}.{self._ctrl.plugins.patchlevel}',
+            f"{_('wait')} ...",
+            ]
+        self.moduleCollection.insert('', 'end', 'novelibre', values=appValues)
+
+        for moduleName in self._ctrl.plugins:
+            nodeTags = []
+            try:
+                installedVersion = self._ctrl.plugins[moduleName].VERSION
+            except AttributeError:
+                installedVersion = _('unknown')
+            latestVersion = f"{_('wait')} ..."
+            columns = [moduleName, installedVersion, latestVersion]
+            if self._ctrl.plugins[moduleName].isRejected:
+                nodeTags.append('rejected')
+                # Mark rejected modules, represented by a dummy.
+            elif not self._ctrl.plugins[moduleName].isActive:
+                nodeTags.append('inactive')
+                # Mark loaded yet incompatible modules.
+            self.moduleCollection.insert('', 'end', moduleName, values=columns, tags=tuple(nodeTags))
+
     def update_module(self, event=None):
         moduleName = self.moduleCollection.selection()[0]
         if moduleName:
