@@ -36,6 +36,12 @@ class UpdateManagerCtrl(SubController):
                 nodeTags.append('inactive')
                 # Mark loaded yet incompatible modules.
             self.moduleCollection.insert('', 'end', moduleName, values=columns, tags=tuple(nodeTags))
+        self.update()
+        # enforcing the display before returning to the time-consuming internet lookup
+
+    def refresh_display(self, moduleName, values):
+        self.moduleCollection.item(moduleName, values=values)
+        self.update()
 
     def update_module(self, event=None):
         moduleName = self.moduleCollection.selection()[0]

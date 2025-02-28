@@ -47,7 +47,7 @@ class UpdateManager(ServiceBase):
             latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
             current = (self._ctrl.plugins.majorVersion, self._ctrl.plugins.minorVersion, self._ctrl.plugins.patchlevel)
             currentStr = f'{self._ctrl.plugins.majorVersion}.{self._ctrl.plugins.minorVersion}.{self._ctrl.plugins.patchlevel}'
-            self.updaterDialog.moduleCollection.item(moduleName, values=[moduleName, currentStr, latestStr])
+            self.updaterDialog.refresh_display(moduleName, [moduleName, currentStr, latestStr])
             if self._update_available(latest, current):
                 # self._download_update(moduleName, downloadUrl)
                 found = True
@@ -66,7 +66,7 @@ class UpdateManager(ServiceBase):
                     majorVersion, minorVersion, patchlevel = ('5', '0', '0')
                     current = (int(majorVersion), int(minorVersion), int(patchlevel))
                     currentStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
-                    self.updaterDialog.moduleCollection.item(moduleName, values=[moduleName, currentStr, latestStr])
+                    self.updaterDialog.refresh_display(moduleName, [moduleName, currentStr, latestStr])
                 except:
                     continue
 
