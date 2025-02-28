@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.4\n"
-"POT-Creation-Date: 2025-02-27 15:21:16\n"
-"PO-Revision-Date: 2025-02-27 15:21:16\n"
+"POT-Creation-Date: 2025-02-28 15:48:59\n"
+"PO-Revision-Date: 2025-02-28 15:48:59\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -13,27 +13,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 
+msgid "Alt-Down"
+msgstr "Alt-Ab"
+
+msgid "Alt-Left"
+msgstr "Alt-Links"
+
+msgid "Alt-Right"
+msgstr "Alt-Rechts"
+
+msgid "Alt-Up"
+msgstr "Alt-Auf"
+
 msgid "An update is available for"
 msgstr "Ein Update ist verfügbar für"
 
 msgid "Check for updates"
 msgstr "Auf Updates prüfen"
 
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Ctrl"
+msgstr "Strg"
+
+msgid "Del"
+msgstr "Entf"
+
+msgid "Finished"
+msgstr "Fertig"
+
+msgid "Home page"
+msgstr "Homepage"
+
+msgid "Installed version"
+msgstr "Installierte Version"
+
+msgid "Latest version"
+msgstr "Aktuelle Version"
+
+msgid "Looking for updates"
+msgstr "Suche Updates"
+
+msgid "Module"
+msgstr "Modul"
+
 msgid "No online update information for novelibre found."
 msgstr "Keine Online-Updateinformationen für novelibre gefunden."
 
-msgid "No updates available."
+msgid "No updates available"
 msgstr "Keine Updates verfügbar"
 
-msgid "Please restart novelibre after installing updates."
-msgstr "Bitte starten Sie novelibre nach der Installation von Updates neu."
+msgid "Online help"
+msgstr "Online-Hilfe"
+
+msgid "Please restart novelibre after installing updates"
+msgstr "Bitte starten Sie novelibre nach der Installation von Updates neu"
+
+msgid "Shift"
+msgstr "Umschalt"
 
 msgid "Start your web browser for download?"
 msgstr "Den Webbrowser zum Download starten?"
+
+msgid "The update takes effect on next start"
+msgstr "Die Aktualisierung wird beim nächsten Start wirksam"
+
+msgid "Update"
+msgstr "Aktualisieren"
 
 msgid "Update checker Online help"
 msgstr "Update-Prüfer Online-Hilfe"
 
 msgid "https://peter88213.github.io/nvhelp-en"
 msgstr "https://peter88213.github.io/nvhelp-de"
+
+msgid "plugin-manager"
+msgstr "pluginmanager"
+
+msgid "unknown"
+msgstr "unbekannt"
+
+msgid "updated"
+msgstr "aktualisiert"
 

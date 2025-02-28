@@ -11,6 +11,7 @@ import webbrowser
 
 from nvlib.controller.services.service_base import ServiceBase
 from nvupdater.nvupdater_locale import _
+from nvupdater.update_manager_dialog import UpdateManagerDialog
 
 
 class CancelCheck(Exception):
@@ -26,13 +27,14 @@ class UpdateManager(ServiceBase):
 
     def check_for_updates(self):
         """Check novelibre and all installed plugins for updates."""
+        self.updaterDialog = UpdateManagerDialog(self._mdl, self._ui, self._ctrl)
         found = False
         self.download = False
-        print('Check for updates')
+        self.updaterDialog.output(f"*** {_('Looking for updates')}... ***")
 
         # Check novelibre.
         repoName = 'novelibre'
-        print(repoName)
+        self.updaterDialog.output(repoName)
         try:
             majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
         except:
@@ -41,42 +43,48 @@ class UpdateManager(ServiceBase):
 
         try:
             latest = (majorVersion, minorVersion, patchlevel)
-            print(f'Latest  : {latest}')
+            latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
+            self.updaterDialog.output(f'Latest  : {latestStr}')
             current = (self._ctrl.plugins.majorVersion, self._ctrl.plugins.minorVersion, self._ctrl.plugins.patchlevel)
-            print(f'Current : {current}')
+            currentStr = f'{self._ctrl.plugins.majorVersion}.{self._ctrl.plugins.minorVersion}.{self._ctrl.plugins.patchlevel}'
+            self.updaterDialog.output(f'Current : {currentStr}')
             if self._update_available(latest, current):
                 self._download_update('novelibre', downloadUrl)
                 found = True
 
             # Check installed plugins.
             for moduleName in self._ctrl.plugins:
-                print(moduleName)
+                self.updaterDialog.output(moduleName)
                 try:
                     repoName = os.path.basename(self._ctrl.plugins[moduleName].URL)
                     # Latest version
                     majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
                     latest = (majorVersion, minorVersion, patchlevel)
-                    print(f'Latest  : {latest}')
+                    latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
 
                     # Current version
-                    majorVersion, minorVersion, patchlevel = self._ctrl.plugins[moduleName].VERSION.split('.')
+                    # majorVersion, minorVersion, patchlevel = self._ctrl.plugins[moduleName].VERSION.split('.')
+                    majorVersion, minorVersion, patchlevel = ('5', '0', '0')
                     current = (int(majorVersion), int(minorVersion), int(patchlevel))
-                    print(f'Current : {current}')
+                    currentStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
+                    self.updaterDialog.moduleCollection.item(moduleName, values=[moduleName, currentStr, latestStr])
                 except:
                     continue
 
                 else:
                     if self._update_available(latest, current):
-                        self._download_update(moduleName, downloadUrl)
+                        # self._download_update(moduleName, downloadUrl)
                         found = True
             if not found:
-                self._ui.show_info(_('No updates available.'), title=_('Check for updates'))
+                self.updaterDialog.output(f"*** {_('No updates available')}. ***")
+            else:
+                self.updaterDialog.output(f"*** {_('Finished')}. ***")
         except CancelCheck:
             # user pressed the "cancel" button
             pass
         finally:
             if self.download:
-                self._ui.show_info(_('Please restart novelibre after installing updates.'), title=_('Check for updates'))
+                self._ui.show_info(f"{_('Please restart novelibre after installing updates')}.", title=_('Check for updates'))
 
     def _download_update(self, repo, downloadUrl):
         """Start the web browser with downloadUrl on demand.
