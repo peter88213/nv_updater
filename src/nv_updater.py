@@ -29,7 +29,6 @@ class Plugin(PluginBase):
     API_VERSION = '5.0'
     DESCRIPTION = 'Update checker'
     URL = 'https://github.com/peter88213/nv_updater'
-    HELP_URL = f'{_("https://peter88213.github.io/nvhelp-en")}/nv_updater/'
 
     def install(self, model, view, controller):
         """Install the plugin and extend the novelibre user interface.

@@ -74,7 +74,7 @@ class UpdateManagerCtrl(SubController):
         self.updateButton.configure(state=updateButtonState)
 
     def open_help(self, event=None):
-        NvHelp.open_help_page(f'tools_menu.html#{_("plugin-manager").lower()}')
+        NvHelp.open_help_page(f'tools_menu.html#{_("nv_updater").lower()}')
 
     def open_homepage(self, event=None):
         moduleName = self.moduleCollection.selection()[0]

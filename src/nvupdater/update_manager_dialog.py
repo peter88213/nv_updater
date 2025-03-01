@@ -11,18 +11,19 @@ from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.widgets.modal_dialog import ModalDialog
 from nvupdater.update_manager_ctrl import UpdateManagerCtrl
 from nvupdater.nvupdater_locale import _
+from nvupdater.nvupdater_help import NvupdaterHelp
 
 
 class UpdateManagerDialog(ModalDialog, UpdateManagerCtrl):
 
+    MIN_HEIGHT = 450
+
     def __init__(self, model, view, controller, **kw):
         super().__init__(view, **kw)
+        self.minsize(1, self.MIN_HEIGHT)
         self.initialize_controller(model, view, controller)
 
         self.title(f'{_("Check for updates")} - novelibre @release')
-
-        self.messagingArea = tk.Label(self, fg='white', bg='green')
-        self.messagingArea.pack(fill='x')
 
         columns = 'Module', 'Installed version', 'Latest version'
         self.moduleCollection = ttk.Treeview(self, columns=columns, show='headings', selectmode='browse')
@@ -44,8 +45,8 @@ class UpdateManagerDialog(ModalDialog, UpdateManagerCtrl):
         self.moduleCollection.column('Latest version', width=100, minwidth=100, stretch=False)
         self.moduleCollection.heading('Latest version', text=_('Latest version'), anchor='w')
 
-        # Populate the list.
-        self.build_module_list()
+        self.messagingArea = tk.Label(self, fg='white', bg='green')
+        self.messagingArea.pack(fill='x')
 
         self._footer = ttk.Frame(self)
         self._footer.pack(fill='both', expand=False)
@@ -79,11 +80,14 @@ class UpdateManagerDialog(ModalDialog, UpdateManagerCtrl):
         ttk.Button(
             self._footer,
             text=_('Online help'),
-            command=self.open_help
+            command=NvupdaterHelp.open_help_page
             ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
-        self.bind(KEYS.OPEN_HELP[0], self.open_help)
+        self.bind(KEYS.OPEN_HELP[0], NvupdaterHelp.open_help_page)
+
+        # Populate the list.
+        self.build_module_list()
 
     def output(self, text):
         self.messagingArea.configure(text=text)
