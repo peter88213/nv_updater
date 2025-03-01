@@ -30,11 +30,10 @@ class UpdateManager(ServiceBase):
         self.updaterDialog = UpdateManagerDialog(self._mdl, self._ui, self._ctrl)
         found = False
         self.download = False
-        self.updaterDialog.output(f"*** {_('Looking for updates')}... ***")
+        self.updaterDialog.output(f"{_('Looking for updates')}...")
 
         # Check novelibre.
         repoName = 'novelibre'
-        self.updaterDialog.output(repoName)
         try:
             majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
         except:
@@ -75,9 +74,9 @@ class UpdateManager(ServiceBase):
                         # self._download_update(moduleName, downloadUrl)
                         found = True
             if not found:
-                self.updaterDialog.output(f"*** {_('No updates available')}. ***")
+                self.updaterDialog.output(f"{_('No updates available')}.")
             else:
-                self.updaterDialog.output(f"*** {_('Finished')}. ***")
+                self.updaterDialog.output(f"{_('Finished')}.")
         except CancelCheck:
             # user pressed the "cancel" button
             pass

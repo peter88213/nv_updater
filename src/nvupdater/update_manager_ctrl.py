@@ -42,6 +42,7 @@ class UpdateManagerCtrl(SubController):
     def refresh_display(self, moduleName, values):
         self.moduleCollection.item(moduleName, values=values)
         self.update()
+        # refreshing the display
 
     def update_module(self, event=None):
         moduleName = self.moduleCollection.selection()[0]

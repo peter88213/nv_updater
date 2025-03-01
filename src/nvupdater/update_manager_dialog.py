@@ -4,6 +4,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/nv_updater
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+import tkinter as tk
 from tkinter import ttk
 
 from nvlib.gui.platform.platform_settings import KEYS
@@ -19,6 +20,9 @@ class UpdateManagerDialog(ModalDialog, UpdateManagerCtrl):
         self.initialize_controller(model, view, controller)
 
         self.title(f'{_("Check for updates")} - novelibre @release')
+
+        self.messagingArea = tk.Label(self, fg='white', bg='green')
+        self.messagingArea.pack(fill='x')
 
         columns = 'Module', 'Installed version', 'Latest version'
         self.moduleCollection = ttk.Treeview(self, columns=columns, show='headings', selectmode='browse')
@@ -82,5 +86,5 @@ class UpdateManagerDialog(ModalDialog, UpdateManagerCtrl):
         self.bind(KEYS.OPEN_HELP[0], self.open_help)
 
     def output(self, text):
-        print(text)
+        self.messagingArea.configure(text=text)
 
