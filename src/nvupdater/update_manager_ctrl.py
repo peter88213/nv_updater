@@ -9,6 +9,7 @@ import webbrowser
 from nvlib.controller.services.nv_help import NvHelp
 from nvlib.controller.sub_controller import SubController
 from nvupdater.nvupdater_locale import _
+from nvlib.nv_globals import HOME_URL
 
 
 class UpdateManagerCtrl(SubController):
@@ -50,7 +51,7 @@ class UpdateManagerCtrl(SubController):
             # if self._ctrl.plugins.delete_file(moduleName):
             if True:
                 self.updateButton.configure(state='disabled')
-                if self._ctrl.plugins[moduleName].isActive:
+                if moduleName == 'novelibre' or self._ctrl.plugins[moduleName].isActive:
                     self._ui.show_info(F"{_('The update takes effect on next start')}.", title=f'{moduleName} {_("updated")}')
                 else:
                     self.moduleCollection.delete(moduleName)
@@ -60,16 +61,20 @@ class UpdateManagerCtrl(SubController):
         homeButtonState = 'disabled'
         updateButtonState = 'disabled'
         if moduleName:
-            try:
-                if self._ctrl.plugins[moduleName].URL:
-                    homeButtonState = 'normal'
-            except:
-                pass
-            try:
-                if self._ctrl.plugins[moduleName].filePath:
-                    updateButtonState = 'normal'
-            except:
-                pass
+            if  moduleName == 'novelibre':
+                homeButtonState = 'normal'
+                updateButtonState = 'normal'
+            else:
+                try:
+                    if self._ctrl.plugins[moduleName].URL:
+                        homeButtonState = 'normal'
+                except:
+                    pass
+                try:
+                    if self._ctrl.plugins[moduleName].filePath:
+                        updateButtonState = 'normal'
+                except:
+                    pass
         self.homeButton.configure(state=homeButtonState)
         self.updateButton.configure(state=updateButtonState)
 
@@ -79,6 +84,10 @@ class UpdateManagerCtrl(SubController):
     def open_homepage(self, event=None):
         moduleName = self.moduleCollection.selection()[0]
         if moduleName:
+            if moduleName == 'novelibre':
+                webbrowser.open(HOME_URL)
+                return
+
             try:
                 url = self._ctrl.plugins[moduleName].URL
                 if url:

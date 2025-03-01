@@ -14,11 +14,6 @@ from nvupdater.nvupdater_locale import _
 from nvupdater.update_manager_dialog import UpdateManagerDialog
 
 
-class CancelCheck(Exception):
-    """Exception used for cancelling the update check."""
-    pass
-
-
 class UpdateManager(ServiceBase):
 
     def __init__(self, model, view, controller):
@@ -40,49 +35,44 @@ class UpdateManager(ServiceBase):
             self._ui.show_error(_('No online update information for novelibre found.'), title=('Check for updates'))
             return
 
-        try:
-            moduleName = 'novelibre'
-            latest = (majorVersion, minorVersion, patchlevel)
-            latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
-            current = (self._ctrl.plugins.majorVersion, self._ctrl.plugins.minorVersion, self._ctrl.plugins.patchlevel)
-            currentStr = f'{self._ctrl.plugins.majorVersion}.{self._ctrl.plugins.minorVersion}.{self._ctrl.plugins.patchlevel}'
-            self.updaterDialog.refresh_display(moduleName, [moduleName, currentStr, latestStr])
-            if self._update_available(latest, current):
-                # self._download_update(moduleName, downloadUrl)
-                found = True
+        moduleName = 'novelibre'
+        latest = (majorVersion, minorVersion, patchlevel)
+        latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
+        current = (self._ctrl.plugins.majorVersion, self._ctrl.plugins.minorVersion, self._ctrl.plugins.patchlevel)
+        currentStr = f'{self._ctrl.plugins.majorVersion}.{self._ctrl.plugins.minorVersion}.{self._ctrl.plugins.patchlevel}'
+        self.updaterDialog.refresh_display(moduleName, [moduleName, currentStr, latestStr])
+        if self._update_available(latest, current):
+            # self._download_update(moduleName, downloadUrl)
+            found = True
 
-            # Check installed plugins.
-            for moduleName in self._ctrl.plugins:
-                try:
-                    repoName = os.path.basename(self._ctrl.plugins[moduleName].URL)
-                    # Latest version
-                    majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
-                    latest = (majorVersion, minorVersion, patchlevel)
-                    latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
+        # Check installed plugins.
+        for moduleName in self._ctrl.plugins:
+            try:
+                repoName = os.path.basename(self._ctrl.plugins[moduleName].URL)
+                # Latest version
+                majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
+                latest = (majorVersion, minorVersion, patchlevel)
+                latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
 
-                    # Current version
-                    # majorVersion, minorVersion, patchlevel = self._ctrl.plugins[moduleName].VERSION.split('.')
-                    majorVersion, minorVersion, patchlevel = ('5', '0', '0')
-                    current = (int(majorVersion), int(minorVersion), int(patchlevel))
-                    currentStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
-                    self.updaterDialog.refresh_display(moduleName, [moduleName, currentStr, latestStr])
-                except:
-                    continue
+                # Current version
+                # majorVersion, minorVersion, patchlevel = self._ctrl.plugins[moduleName].VERSION.split('.')
+                majorVersion, minorVersion, patchlevel = ('5', '0', '0')
+                current = (int(majorVersion), int(minorVersion), int(patchlevel))
+                currentStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
+                self.updaterDialog.refresh_display(moduleName, [moduleName, currentStr, latestStr])
+            except:
+                continue
 
-                else:
-                    if self._update_available(latest, current):
-                        # self._download_update(moduleName, downloadUrl)
-                        found = True
-            if not found:
-                self.updaterDialog.output(f"{_('No updates available')}.")
             else:
-                self.updaterDialog.output(f"{_('Finished')}.")
-        except CancelCheck:
-            # user pressed the "cancel" button
-            pass
-        finally:
-            if self.download:
-                self._ui.show_info(f"{_('Please restart novelibre after installing updates')}.", title=_('Check for updates'))
+                if self._update_available(latest, current):
+                    # self._download_update(moduleName, downloadUrl)
+                    found = True
+        if not found:
+            self.updaterDialog.output(f"{_('No updates available')}.")
+        else:
+            self.updaterDialog.output(f"{_('Finished')}.")
+        if self.download:
+            self._ui.show_info(f"{_('Please restart novelibre after installing updates')}.", title=_('Check for updates'))
 
     def _download_update(self, repo, downloadUrl):
         """Start the web browser with downloadUrl on demand.
