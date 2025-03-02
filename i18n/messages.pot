@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.0.4\n"
-"POT-Creation-Date: 2025-02-28 15:48:59\n"
+"Project-Id-Version: 5.1.0\n"
+"POT-Creation-Date: 2025-03-02 09:41:40\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -24,9 +24,6 @@ msgid "Alt-Right"
 msgstr ""
 
 msgid "Alt-Up"
-msgstr ""
-
-msgid "An update is available for"
 msgstr ""
 
 msgid "Check for updates"
@@ -59,9 +56,6 @@ msgstr ""
 msgid "Module"
 msgstr ""
 
-msgid "No online update information for novelibre found."
-msgstr ""
-
 msgid "No updates available"
 msgstr ""
 
@@ -74,12 +68,6 @@ msgstr ""
 msgid "Shift"
 msgstr ""
 
-msgid "Start your web browser for download?"
-msgstr ""
-
-msgid "The update takes effect on next start"
-msgstr ""
-
 msgid "Update"
 msgstr ""
 
@@ -89,11 +77,8 @@ msgstr ""
 msgid "https://peter88213.github.io/nvhelp-en"
 msgstr ""
 
-msgid "plugin-manager"
-msgstr ""
-
 msgid "unknown"
 msgstr ""
 
-msgid "updated"
+msgid "wait"
 msgstr ""
