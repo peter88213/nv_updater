@@ -5,7 +5,7 @@
 ## Changelog
 
 
-### Version 5.1.2
+### Version 5.1.3
 
 - Showing a modal dialog with a list like the plugin manager (#1).
 
