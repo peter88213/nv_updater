@@ -15,6 +15,6 @@ class NvupdaterHelp:
 
     @classmethod
     def open_help_page(cls, event=None):
-        """Show the online help page."""
+        """Start the web browser with the nv_updater online help page."""
         webbrowser.open(cls.HELP_URL)
 

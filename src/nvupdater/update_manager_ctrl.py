@@ -5,7 +5,6 @@ For further information see https://github.com/peter88213/nv_updater
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import configparser
-import os
 from urllib.request import urlopen
 import webbrowser
 
@@ -23,6 +22,10 @@ class UpdateManagerCtrl(SubController):
         self.download = False
 
     def build_module_list(self):
+        """Populate repoList with repository entries.
+        
+        Prepare the downloadUrls dictionary for repositories to update from. 
+        """
         repoName = 'novelibre'
         self.downloadUrls[repoName] = None
         appValues = [
@@ -52,13 +55,17 @@ class UpdateManagerCtrl(SubController):
         # enforcing the display before returning to the time-consuming internet lookup
 
     def check_repos(self):
+        """Check the repositories and update the view.
+        
+        Add the URLs to download from to the downloadUrls dictionary.
+        """
         self.output(f"{_('Looking for updates')}...")
         found = False
 
         # Check novelibre.
         repoName = 'novelibre'
         try:
-            majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
+            majorVersion, minorVersion, patchlevel, downloadUrl = self._get_remote_data(repoName)
         except:
             latestStr = _('unknown')
         else:
@@ -87,7 +94,7 @@ class UpdateManagerCtrl(SubController):
                 current = (0, 0, 0)
                 currentStr = _('unknown')
             try:
-                majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
+                majorVersion, minorVersion, patchlevel, downloadUrl = self._get_remote_data(repoName)
                 latest = (majorVersion, minorVersion, patchlevel)
                 latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
             except:
@@ -109,6 +116,7 @@ class UpdateManagerCtrl(SubController):
             self._ui.show_info(f"{_('Please restart novelibre after installing updates')}.", title=_('Check for updates'))
 
     def on_select_module(self, event):
+        """Enable or disable the selected repo's "Update" and "Home" buttons."""
         repoName = self.repoList.selection()[0]
         homeButtonState = 'disabled'
         updateButtonState = 'disabled'
@@ -119,11 +127,13 @@ class UpdateManagerCtrl(SubController):
             else:
                 try:
                     if self._ctrl.plugins[repoName].URL:
+                        # there is a repository URL defined for the selected module
                         homeButtonState = 'normal'
                 except:
                     pass
                 try:
                     if self.downloadUrls[repoName] is not None:
+                        # the selected module is outdated
                         updateButtonState = 'normal'
                 except:
                     pass
@@ -131,14 +141,13 @@ class UpdateManagerCtrl(SubController):
         self.updateButton.configure(state=updateButtonState)
 
     def on_quit(self):
+        """Display a warning if something might have been updated."""
         if self.download:
             self._ui.show_info(f"{_('Please restart novelibre after installing updates')}.", title=_('Check for updates'))
         self.destroy()
 
-    def open_help(self, event=None):
-        NvHelp.open_help_page(f"tools_menu.html#{_('Check for updates').lower()}")
-
     def open_homepage(self, event=None):
+        """Start the web browser with the selected module's home page."""
         repoName = self.repoList.selection()[0]
         if repoName:
             if repoName == 'novelibre':
@@ -153,6 +162,7 @@ class UpdateManagerCtrl(SubController):
                 pass
 
     def update_module(self, event=None):
+        """Start the web browser with the selected module's update URL."""
         repoName = self.repoList.selection()[0]
         if self.downloadUrls[repoName] is None:
             return
@@ -161,7 +171,8 @@ class UpdateManagerCtrl(SubController):
         self.repoList.item(repoName, tags=('updated'))
         self.download = True
 
-    def _get_version_info(self, repoName):
+    def _get_remote_data(self, repoName):
+        """Return a tuple with the version number components and the download URL."""
         if repoName == 'novelibre':
             repoUrl = 'https://github.com/peter88213/novelibre'
         else:
@@ -177,6 +188,7 @@ class UpdateManagerCtrl(SubController):
         return int(majorVersion), int(minorVersion), int(patchlevel), downloadUrl
 
     def _refresh_display(self, repoName, values, tags=()):
+        """Update the version numbers and colors onan entry in the repoList."""
         self.repoList.item(repoName, values=values, tags=tags)
         self.update()
 

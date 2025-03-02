@@ -4,14 +4,14 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/nv_updater
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-import tkinter as tk
 from tkinter import ttk
 
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.widgets.modal_dialog import ModalDialog
-from nvupdater.update_manager_ctrl import UpdateManagerCtrl
-from nvupdater.nvupdater_locale import _
 from nvupdater.nvupdater_help import NvupdaterHelp
+from nvupdater.nvupdater_locale import _
+from nvupdater.update_manager_ctrl import UpdateManagerCtrl
+import tkinter as tk
 
 
 class UpdateManagerDialog(ModalDialog, UpdateManagerCtrl):

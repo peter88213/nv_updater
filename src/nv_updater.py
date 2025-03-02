@@ -16,8 +16,6 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 """
-import webbrowser
-
 from nvupdater.nvupdater_locale import _
 from nvlib.controller.plugin.plugin_base import PluginBase
 from nvupdater.update_service import UpdateService
@@ -41,17 +39,11 @@ class Plugin(PluginBase):
         Extends the superclass method.
         """
         super().install(model, view, controller)
-        self.updateManager = UpdateService(model, view, controller)
+        self.updateService = UpdateService(model, view, controller)
 
         # Add an entry to the Help menu.
-        self._ui.helpMenu.add_command(label=_('Update checker Online help'), command=self.open_help)
+        self._ui.helpMenu.add_command(label=_('Update checker Online help'), command=self.updateService.open_help)
 
         # Add an entry to the Tools menu.
-        self._ui.toolsMenu.add_command(label=_('Check for updates'), command=self.check_for_updates)
-
-    def check_for_updates(self):
-        self.updateManager.check_for_updates()
-
-    def open_help(self, event=None):
-        webbrowser.open(self.HELP_URL)
+        self._ui.toolsMenu.add_command(label=_('Check for updates'), command=self.updateService.check_for_updates)
 
