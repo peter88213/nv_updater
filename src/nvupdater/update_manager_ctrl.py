@@ -60,7 +60,7 @@ class UpdateManagerCtrl(SubController):
         try:
             majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
         except:
-            pass
+            latestStr = _('unknown')
         else:
             latest = (majorVersion, minorVersion, patchlevel)
             latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
@@ -72,33 +72,31 @@ class UpdateManagerCtrl(SubController):
                 found = True
             else:
                 tags = ()
-            self._refresh_display(repoName, [repoName, currentStr, latestStr], tags=tags)
+        self._refresh_display(repoName, [repoName, currentStr, latestStr], tags=tags)
 
         # Check installed plugins.
         for repoName in self._ctrl.plugins:
             try:
-                repoName = os.path.basename(self._ctrl.plugins[repoName].URL)
-                # Latest version
-                majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
-                latest = (majorVersion, minorVersion, patchlevel)
-                latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
-            except:
-                continue
-
-            try:
-                # Current version
                 majorVersion, minorVersion, patchlevel = self._ctrl.plugins[repoName].VERSION.split('.')
                 current = (int(majorVersion), int(minorVersion), int(patchlevel))
                 currentStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
             except:
                 current = (0, 0, 0)
                 currentStr = _('unknown')
-            if self._update_available(latest, current):
-                self.downloadUrls[repoName] = downloadUrl
-                tags = ('outdated')
-                found = True
-            else:
+            try:
+                majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
+                latest = (majorVersion, minorVersion, patchlevel)
+                latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
+            except:
+                latestStr = _('unknown')
                 tags = ()
+            else:
+                if self._update_available(latest, current):
+                    self.downloadUrls[repoName] = downloadUrl
+                    tags = ('outdated')
+                    found = True
+                else:
+                    tags = ()
             self._refresh_display(repoName, [repoName, currentStr, latestStr], tags=tags)
         if not found:
             self.output(f"{_('No updates available')}.")
@@ -161,7 +159,11 @@ class UpdateManagerCtrl(SubController):
         self.download = True
 
     def _get_version_info(self, repoName):
-        versionUrl = f'https://github.com/peter88213/{repoName}/raw/main/VERSION'
+        if repoName == 'novelibre':
+            repoUrl = 'https://github.com/peter88213/novelibre'
+        else:
+            repoUrl = self._ctrl.plugins[repoName].URL
+        versionUrl = f'{repoUrl}/raw/main/VERSION'
         data = urlopen(versionUrl)
         versionInfo = data.read().decode('utf-8')
         config = configparser.ConfigParser()

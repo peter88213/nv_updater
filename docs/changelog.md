@@ -5,20 +5,12 @@
 ## Changelog
 
 
-### Version 5.1.0
+### Version 5.1.1
 
 - Showing a modal dialog with a list like the plugin manager (#1).
 
 API: 5.0
 Based on novelibre 5.16.3
-
-
-### Version 5.0.4
-
-- Refactored the code for better maintainability.
-
-API: 5.0
-Based on novelibre 5.16.1
 
 
 ### Version 5.0.3
