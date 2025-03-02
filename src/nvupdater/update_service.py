@@ -8,7 +8,7 @@ from nvlib.controller.services.service_base import ServiceBase
 from nvupdater.update_manager_dialog import UpdateManagerDialog
 
 
-class UpdateManager(ServiceBase):
+class UpdateService(ServiceBase):
 
     def __init__(self, model, view, controller):
         super().__init__(model, view, controller)

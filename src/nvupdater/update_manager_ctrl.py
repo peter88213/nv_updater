@@ -76,6 +76,9 @@ class UpdateManagerCtrl(SubController):
 
         # Check installed plugins.
         for repoName in self._ctrl.plugins:
+            if self._ctrl.plugins[repoName].isRejected:
+                continue
+
             try:
                 majorVersion, minorVersion, patchlevel = self._ctrl.plugins[repoName].VERSION.split('.')
                 current = (int(majorVersion), int(minorVersion), int(patchlevel))
@@ -120,7 +123,7 @@ class UpdateManagerCtrl(SubController):
                 except:
                     pass
                 try:
-                    if self._ctrl.plugins[repoName].filePath:
+                    if self.downloadUrls[repoName] is not None:
                         updateButtonState = 'normal'
                 except:
                     pass

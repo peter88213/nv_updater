@@ -20,7 +20,7 @@ import webbrowser
 
 from nvupdater.nvupdater_locale import _
 from nvlib.controller.plugin.plugin_base import PluginBase
-from nvupdater.update_manager import UpdateManager
+from nvupdater.update_service import UpdateService
 
 
 class Plugin(PluginBase):
@@ -41,7 +41,7 @@ class Plugin(PluginBase):
         Extends the superclass method.
         """
         super().install(model, view, controller)
-        self.updateManager = UpdateManager(model, view, controller)
+        self.updateManager = UpdateService(model, view, controller)
 
         # Add an entry to the Help menu.
         self._ui.helpMenu.add_command(label=_('Update checker Online help'), command=self.open_help)

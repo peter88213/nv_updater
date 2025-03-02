@@ -54,15 +54,6 @@ class UpdateManagerDialog(ModalDialog, UpdateManagerCtrl):
         self._footer = ttk.Frame(self)
         self._footer.pack(fill='both', expand=False)
 
-        # "Home page" button.
-        self.homeButton = ttk.Button(
-            self._footer,
-            text=_('Home page'),
-            command=self.open_homepage,
-            state='disabled'
-            )
-        self.homeButton.pack(padx=5, pady=5, side='left')
-
         # "Update" button.
         self.updateButton = ttk.Button(
             self._footer,
@@ -71,6 +62,15 @@ class UpdateManagerDialog(ModalDialog, UpdateManagerCtrl):
             state='disabled'
             )
         self.updateButton.pack(padx=5, pady=5, side='left')
+
+        # "Home page" button.
+        self.homeButton = ttk.Button(
+            self._footer,
+            text=_('Home page'),
+            command=self.open_homepage,
+            state='disabled'
+            )
+        self.homeButton.pack(padx=5, pady=5, side='left')
 
         # "Close" button.
         ttk.Button(
