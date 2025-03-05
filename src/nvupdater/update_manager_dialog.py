@@ -38,7 +38,7 @@ class UpdateManagerDialog(ModalDialog, UpdateManagerCtrl):
         self.repoList.pack(fill='both', expand=True)
         self.repoList.bind('<<TreeviewSelect>>', self.on_select_module)
         self.repoList.tag_configure('outdated', foreground='red')
-        self.repoList.tag_configure('updated', foreground='green')
+        self.repoList.tag_configure('updated', foreground='blue')
         self.repoList.tag_configure('inactive', foreground='gray')
 
         self.repoList.column('Module', width=150, minwidth=120, stretch=False)

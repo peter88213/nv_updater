@@ -8,7 +8,6 @@ import configparser
 from urllib.request import urlopen
 import webbrowser
 
-from nvlib.controller.services.nv_help import NvHelp
 from nvlib.controller.sub_controller import SubController
 from nvlib.nv_globals import HOME_URL
 from nvupdater.nvupdater_locale import _
@@ -18,8 +17,9 @@ class UpdateManagerCtrl(SubController):
 
     def initialize_controller(self, model, view, controller):
         super().initialize_controller(model, view, controller)
-        self.downloadUrls = {}
-        self.download = False
+        self._downloadUrls = {}
+        self._download = False
+        self._stopSearching = False
 
     def build_module_list(self):
         """Populate repoList with repository entries.
@@ -27,7 +27,7 @@ class UpdateManagerCtrl(SubController):
         Prepare the downloadUrls dictionary for repositories to update from. 
         """
         repoName = 'novelibre'
-        self.downloadUrls[repoName] = None
+        self._downloadUrls[repoName] = None
         appValues = [
             repoName,
             f'{self._ctrl.plugins.majorVersion}.{self._ctrl.plugins.minorVersion}.{self._ctrl.plugins.patchlevel}',
@@ -39,7 +39,7 @@ class UpdateManagerCtrl(SubController):
             if self._ctrl.plugins[repoName].isRejected:
                 continue
 
-            self.downloadUrls[repoName] = None
+            self._downloadUrls[repoName] = None
             nodeTags = []
             try:
                 installedVersion = self._ctrl.plugins[repoName].VERSION
@@ -74,7 +74,7 @@ class UpdateManagerCtrl(SubController):
             current = (self._ctrl.plugins.majorVersion, self._ctrl.plugins.minorVersion, self._ctrl.plugins.patchlevel)
             currentStr = f'{self._ctrl.plugins.majorVersion}.{self._ctrl.plugins.minorVersion}.{self._ctrl.plugins.patchlevel}'
             if self._update_available(latest, current):
-                self.downloadUrls[repoName] = downloadUrl
+                self._downloadUrls[repoName] = downloadUrl
                 tags = ('outdated')
                 found = True
             else:
@@ -83,6 +83,9 @@ class UpdateManagerCtrl(SubController):
 
         # Check installed plugins.
         for repoName in self._ctrl.plugins:
+            if self._stopSearching:
+                return
+
             if self._ctrl.plugins[repoName].isRejected:
                 continue
 
@@ -102,7 +105,7 @@ class UpdateManagerCtrl(SubController):
                 tags = ()
             else:
                 if self._update_available(latest, current):
-                    self.downloadUrls[repoName] = downloadUrl
+                    self._downloadUrls[repoName] = downloadUrl
                     tags = ('outdated')
                     found = True
                 else:
@@ -132,7 +135,7 @@ class UpdateManagerCtrl(SubController):
                 except:
                     pass
                 try:
-                    if self.downloadUrls[repoName] is not None:
+                    if self._downloadUrls[repoName] is not None:
                         # the selected module is outdated
                         updateButtonState = 'normal'
                 except:
@@ -142,7 +145,8 @@ class UpdateManagerCtrl(SubController):
 
     def on_quit(self):
         """Display a warning if something might have been updated."""
-        if self.download:
+        self._stopSearching = True
+        if self._download:
             self._ui.show_info(f"{_('Please restart novelibre after installing updates')}.", title=_('Check for updates'))
         self.destroy()
 
@@ -164,12 +168,12 @@ class UpdateManagerCtrl(SubController):
     def update_module(self, event=None):
         """Start the web browser with the selected module's update URL."""
         repoName = self.repoList.selection()[0]
-        if self.downloadUrls[repoName] is None:
+        if self._downloadUrls[repoName] is None:
             return
 
-        webbrowser.open(self.downloadUrls[repoName])
+        webbrowser.open(self._downloadUrls[repoName])
         self.repoList.item(repoName, tags=('updated'))
-        self.download = True
+        self._download = True
 
     def _get_remote_data(self, repoName):
         """Return a tuple with the version number components and the download URL."""
@@ -188,9 +192,13 @@ class UpdateManagerCtrl(SubController):
         return int(majorVersion), int(minorVersion), int(patchlevel), downloadUrl
 
     def _refresh_display(self, repoName, values, tags=()):
-        """Update the version numbers and colors onan entry in the repoList."""
-        self.repoList.item(repoName, values=values, tags=tags)
-        self.update()
+        """Update the version numbers and colors of an entry in the repoList."""
+        try:
+            self.repoList.item(repoName, values=values, tags=tags)
+            self.update()
+        except:
+            pass
+            # preventing an error due to pending checks while the window is already closed
 
     def _update_available(self, latest, current):
         """Return True, if the latest version number is greater than the current one."""

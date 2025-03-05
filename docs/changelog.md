@@ -5,6 +5,15 @@
 ## Changelog
 
 
+### Version 5.1.5
+
+- Fixed a bug where an unhandled exception may occur when cancelling the search for updates.
+- Changed the color of "updated" list items from green to blue.
+
+API: 5.0
+Based on novelibre 5.16.3
+
+
 ### Version 5.1.4
 
 - Showing a modal dialog with a list like the plugin manager (#1).
