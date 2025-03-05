@@ -64,15 +64,16 @@ class UpdateManagerCtrl(SubController):
 
         # Check novelibre.
         repoName = 'novelibre'
+        current = (self._ctrl.plugins.majorVersion, self._ctrl.plugins.minorVersion, self._ctrl.plugins.patchlevel)
+        currentStr = f'{self._ctrl.plugins.majorVersion}.{self._ctrl.plugins.minorVersion}.{self._ctrl.plugins.patchlevel}'
         try:
             majorVersion, minorVersion, patchlevel, downloadUrl = self._get_remote_data(repoName)
         except:
             latestStr = _('unknown')
+            tags = ()
         else:
             latest = (majorVersion, minorVersion, patchlevel)
             latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
-            current = (self._ctrl.plugins.majorVersion, self._ctrl.plugins.minorVersion, self._ctrl.plugins.patchlevel)
-            currentStr = f'{self._ctrl.plugins.majorVersion}.{self._ctrl.plugins.minorVersion}.{self._ctrl.plugins.patchlevel}'
             if self._update_available(latest, current):
                 self._downloadUrls[repoName] = downloadUrl
                 tags = ('outdated')

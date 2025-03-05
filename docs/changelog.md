@@ -5,6 +5,14 @@
 ## Changelog
 
 
+### Version 5.1.6
+
+- Handling offline operation.
+
+API: 5.0
+Based on novelibre 5.16.3
+
+
 ### Version 5.1.5
 
 - Fixed a bug where an unhandled exception may occur when cancelling the search for updates.
