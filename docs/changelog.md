@@ -5,6 +5,14 @@
 ## Changelog
 
 
+### Version 5.1.7
+
+- Rewording: "Module" -> "Component".
+
+API: 5.0
+Based on novelibre 5.16.5
+
+
 ### Version 5.1.6
 
 - Handling offline operation.

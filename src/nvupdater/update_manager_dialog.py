@@ -27,7 +27,7 @@ class UpdateManagerDialog(ModalDialog, UpdateManagerCtrl):
 
         self.protocol("WM_DELETE_WINDOW", self.on_quit)
 
-        columns = 'Module', 'Installed version', 'Latest version'
+        columns = 'Plugin', 'Installed version', 'Latest version'
         self.repoList = ttk.Treeview(self, columns=columns, show='headings', selectmode='browse')
 
         # scrollY = ttk.Scrollbar(self.moduleCollection, orient='vertical', command=self.moduleCollection.yview)
@@ -36,13 +36,13 @@ class UpdateManagerDialog(ModalDialog, UpdateManagerCtrl):
         #--- unsolved problem: adding a scollbar makes the window shrink to minimum
 
         self.repoList.pack(fill='both', expand=True)
-        self.repoList.bind('<<TreeviewSelect>>', self.on_select_module)
+        self.repoList.bind('<<TreeviewSelect>>', self.on_select_plugin)
         self.repoList.tag_configure('outdated', foreground='red')
         self.repoList.tag_configure('updated', foreground='blue')
         self.repoList.tag_configure('inactive', foreground='gray')
 
-        self.repoList.column('Module', width=150, minwidth=120, stretch=False)
-        self.repoList.heading('Module', text=_('Module'), anchor='w')
+        self.repoList.column('Plugin', width=150, minwidth=120, stretch=False)
+        self.repoList.heading('Plugin', text=_('Plugin'), anchor='w')
         self.repoList.column('Installed version', width=100, minwidth=100, stretch=False)
         self.repoList.heading('Installed version', text=_('Installed version'), anchor='w')
         self.repoList.column('Latest version', width=100, minwidth=100, stretch=False)

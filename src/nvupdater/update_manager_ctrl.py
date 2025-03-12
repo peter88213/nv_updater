@@ -119,7 +119,7 @@ class UpdateManagerCtrl(SubController):
         if False:
             self._ui.show_info(f"{_('Please restart novelibre after installing updates')}.", title=_('Check for updates'))
 
-    def on_select_module(self, event):
+    def on_select_plugin(self, event):
         """Enable or disable the selected repo's "Update" and "Home" buttons."""
         repoName = self.repoList.selection()[0]
         homeButtonState = 'disabled'

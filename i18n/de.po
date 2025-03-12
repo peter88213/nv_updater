@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.1.6\n"
-"POT-Creation-Date: 2025-03-05 14:16:13\n"
-"PO-Revision-Date: 2025-03-05 14:16:13\n"
+"Project-Id-Version: 5.1.7\n"
+"POT-Creation-Date: 2025-03-12 22:51:16\n"
+"PO-Revision-Date: 2025-03-12 22:51:16\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,9 @@ msgstr "Auf Updates prüfen"
 msgid "Close"
 msgstr "Schließen"
 
+msgid "Component"
+msgstr "Komponente"
+
 msgid "Ctrl"
 msgstr "Strg"
 
@@ -51,9 +54,6 @@ msgstr "Aktuelle Version"
 
 msgid "Looking for updates"
 msgstr "Suche Updates"
-
-msgid "Module"
-msgstr "Modul"
 
 msgid "No updates available"
 msgstr "Keine Updates verfügbar"
