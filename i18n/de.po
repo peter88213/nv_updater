@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.1.7\n"
-"POT-Creation-Date: 2025-03-12 22:51:16\n"
-"PO-Revision-Date: 2025-03-12 22:51:16\n"
+"Project-Id-Version: 5.2.0\n"
+"POT-Creation-Date: 2025-03-21 19:23:27\n"
+"PO-Revision-Date: 2025-03-21 19:23:27\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -30,9 +30,6 @@ msgstr "Auf Updates prüfen"
 
 msgid "Close"
 msgstr "Schließen"
-
-msgid "Component"
-msgstr "Komponente"
 
 msgid "Ctrl"
 msgstr "Strg"
@@ -61,8 +58,14 @@ msgstr "Keine Updates verfügbar"
 msgid "Online help"
 msgstr "Online-Hilfe"
 
+msgid "Outdated components remain active until next start"
+msgstr "Veraltete Komponenten bleiben bis zum nächsten Start aktiv"
+
 msgid "Please restart novelibre after installing updates"
 msgstr "Bitte starten Sie novelibre nach der Installation von Updates neu"
+
+msgid "Plugin"
+msgstr "Plugin"
 
 msgid "Shift"
 msgstr "Umschalt"

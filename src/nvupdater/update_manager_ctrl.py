@@ -116,8 +116,6 @@ class UpdateManagerCtrl(SubController):
             self.output(f"{_('No updates available')}.")
         else:
             self.output(f"{_('Finished')}.")
-        if False:
-            self._ui.show_info(f"{_('Please restart novelibre after installing updates')}.", title=_('Check for updates'))
 
     def on_select_plugin(self, event):
         """Enable or disable the selected repo's "Update" and "Home" buttons."""
@@ -148,7 +146,12 @@ class UpdateManagerCtrl(SubController):
         """Display a warning if something might have been updated."""
         self._stopSearching = True
         if self._download:
-            self._ui.show_info(f"{_('Please restart novelibre after installing updates')}.", title=_('Check for updates'))
+            self._ui.show_info(
+                message=_('Please restart novelibre after installing updates'),
+                detail=f"{_('Outdated components remain active until next start')}.",
+                title=_('Check for updates'),
+                parent=self
+                )
         self.destroy()
 
     def open_homepage(self, event=None):

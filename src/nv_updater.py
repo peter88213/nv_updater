@@ -24,7 +24,7 @@ from nvupdater.update_service import UpdateService
 class Plugin(PluginBase):
     """Plugin class for the novelibre update checker."""
     VERSION = '@release'
-    API_VERSION = '5.0'
+    API_VERSION = '5.17'
     DESCRIPTION = 'Update checker'
     URL = 'https://github.com/peter88213/nv_updater'
 
