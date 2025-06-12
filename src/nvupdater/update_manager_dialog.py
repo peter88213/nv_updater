@@ -76,15 +76,15 @@ class UpdateManagerDialog(ModalDialog, UpdateManagerCtrl):
         ttk.Button(
             self._footer,
             text=_('Close'),
-            command=self.on_quit
-            ).pack(padx=5, pady=5, side='right')
+            command=self.on_quit,
+        ).pack(padx=5, pady=5, side='right')
 
         # "Help" button.
         ttk.Button(
             self._footer,
             text=_('Online help'),
-            command=NvupdaterHelp.open_help_page
-            ).pack(padx=5, pady=5, side='right')
+            command=NvupdaterHelp.open_help_page,
+        ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
         self.bind(KEYS.OPEN_HELP[0], NvupdaterHelp.open_help_page)
