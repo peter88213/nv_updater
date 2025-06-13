@@ -4,13 +4,21 @@
 
 ## Changelog
 
+### Version 5.3.0
+
+- Refactored the code for better maintainability.
+  Reintegrated the controller mixin class into the view class.
+
+API: 5.26
+Based on novelibre 5.26.3
+
 
 ### Version 5.2.0
 
 - Updated the messaging.
 
-API: 5.17
-Based on novelibre 5.17.3
+API: 5.26
+Based on novelibre 5.26.3
 
 
 ### Version 5.1.7
