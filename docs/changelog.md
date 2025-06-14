@@ -4,13 +4,14 @@
 
 ## Changelog
 
-### Version 5.3.0
+### Version 5.3.1
 
 - Refactored the code for better maintainability.
   Reintegrated the controller mixin class into the view class.
+- Reformatted parts of the code according to PEP-8.
 
 API: 5.26
-Based on novelibre 5.26.3
+Based on novelibre 5.26.4
 
 
 ### Version 5.2.0
