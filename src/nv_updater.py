@@ -42,8 +42,14 @@ class Plugin(PluginBase):
         self.updateService = UpdateService(model, view, controller)
 
         # Add an entry to the Help menu.
-        self._ui.helpMenu.add_command(label=_('Update checker Online help'), command=self.updateService.open_help)
+        self._ui.helpMenu.add_command(
+            label=_('Update checker Online help'),
+            command=self.updateService.open_help,
+        )
 
         # Add an entry to the Tools menu.
-        self._ui.toolsMenu.add_command(label=_('Check for updates'), command=self.updateService.check_for_updates)
+        self._ui.toolsMenu.add_command(
+            label=_('Check for updates'),
+            command=self.updateService.check_for_updates,
+        )
 

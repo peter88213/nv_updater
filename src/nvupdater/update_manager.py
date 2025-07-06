@@ -48,7 +48,8 @@ class UpdateManager(ModalDialog, SubController):
         # )
         # self.moduleCollection.configure(yscrollcommand=scrollY.set)
         # scrollY.pack(side='right', fill='y')
-        #--- unsolved problem: adding a scollbar makes the window shrink to minimum
+        #--- unsolved problem: adding a scollbar
+        #    makes the window shrink to minimum
 
         self._repoList.pack(fill='both', expand=True)
         self._repoList.bind('<<TreeviewSelect>>', self._on_select_plugin)
@@ -280,7 +281,8 @@ class UpdateManager(ModalDialog, SubController):
         # to the time-consuming internet lookup
 
     def _get_remote_data(self, repoName):
-        # Return a tuple with the version number components and the download URL.
+        # Return a tuple with the version number components
+        # and the download URL.
         if repoName == 'novelibre':
             repoUrl = 'https://github.com/peter88213/novelibre'
         else:
@@ -293,7 +295,12 @@ class UpdateManager(ModalDialog, SubController):
         downloadUrl = config['LATEST']['download_link']
         version = config['LATEST']['version']
         majorVersion, minorVersion, patchlevel = version.split('.')
-        return int(majorVersion), int(minorVersion), int(patchlevel), downloadUrl
+        return (
+            int(majorVersion),
+            int(minorVersion),
+            int(patchlevel),
+            downloadUrl
+        )
 
     def _on_select_plugin(self, event):
         # Enable or disable the selected repo's "Update" and "Home" buttons.
