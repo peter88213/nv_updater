@@ -88,6 +88,10 @@ def main(zipped=True):
         output(f'Copying locale ...')
         copy_tree('locale', applicationDir)
 
+        # Install the icon files.
+        output('Copying icons ...')
+        copy_tree('icons', applicationDir)
+
         # Show a success message.
         output(
             (

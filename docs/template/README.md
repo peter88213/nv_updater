@@ -4,7 +4,7 @@
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/nv_updater/)
 
 
-# nv_updater
+# [U](icons/update.png) nv_updater
 
 The [novelibre](https://github.com/peter88213/novelibre/) Python program helps authors organize novels.  
 
@@ -57,6 +57,11 @@ See the [online manual](https://peter88213.github.io/nvhelp-en/nv_updater/)
 
 ---
 
+## Credits
+
+- The icons are based on the [Eva Icons](https://akveo.github.io/eva-icons/#/), published under the [MIT License](http://www.opensource.org/licenses/mit-license.php). The original black and white icons were adapted for this application by the maintainer. 
+
+---
 ## License
 
 This is Open Source software, and the *nv_updater* plugin is licensed under GPLv3. See the

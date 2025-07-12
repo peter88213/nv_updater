@@ -16,9 +16,12 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 """
+from pathlib import Path
+
 from nvupdater.nvupdater_locale import _
 from nvlib.controller.plugin.plugin_base import PluginBase
 from nvupdater.update_service import UpdateService
+import tkinter as tk
 
 
 class Plugin(PluginBase):
@@ -40,16 +43,34 @@ class Plugin(PluginBase):
         """
         super().install(model, view, controller)
         self.updateService = UpdateService(model, view, controller)
-
-        # Add an entry to the Help menu.
-        self._ui.helpMenu.add_command(
-            label=_('Update checker Online help'),
-            command=self.updateService.open_help,
-        )
+        self._icon = self._get_icon('update.png')
 
         # Add an entry to the Tools menu.
         self._ui.toolsMenu.add_command(
             label=_('Check for updates'),
+            image=self._icon,
+            compound='left',
             command=self.updateService.check_for_updates,
         )
 
+        # Add an entry to the Help menu.
+        self._ui.helpMenu.add_command(
+            label=_('Update checker Online help'),
+            image=self._icon,
+            compound='left',
+            command=self.updateService.open_help,
+        )
+
+    def _get_icon(self, fileName):
+        # Return the icon for the main view.
+        if self._ctrl.get_preferences().get('large_icons', False):
+            size = 24
+        else:
+            size = 16
+        try:
+            homeDir = str(Path.home()).replace('\\', '/')
+            iconPath = f'{homeDir}/.novx/icons/{size}'
+            icon = tk.PhotoImage(file=f'{iconPath}/{fileName}')
+        except:
+            icon = None
+        return icon
