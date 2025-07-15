@@ -5,7 +5,7 @@
 ## Changelog
 
 
-Version 5.3.2
+### Version 5.3.2
 
 - Added icons.
 
