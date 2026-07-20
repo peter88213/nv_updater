@@ -5,6 +5,14 @@
 ## Changelog
 
 
+### Version 5.3.3
+
+- Keeping the modal dialog always in front.
+
+API: 5.26
+Based on novelibre 5.62.2
+
+
 ### Version 5.3.2
 
 - Added icons.
