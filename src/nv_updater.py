@@ -29,7 +29,7 @@ class Plugin(PluginBase):
     URL = 'https://github.com/peter88213/nv_updater'
 
     def install(self, model, view, controller):
-        """Install the plugin and extend the novelibre user interface.
+        """Install the plugin at runtime.
         
         Positional arguments:
             model -- reference to the novelibre main model instance.
