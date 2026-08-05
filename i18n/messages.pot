@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.3.3\n"
-"POT-Creation-Date: 2026-07-20 19:46:10\n"
+"Project-Id-Version: 5.4.0\n"
+"POT-Creation-Date: 2026-08-05 16:03:05\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -32,6 +32,9 @@ msgstr ""
 msgid "Finished"
 msgstr ""
 
+msgid "Help"
+msgstr ""
+
 msgid "Home page"
 msgstr ""
 
@@ -48,9 +51,6 @@ msgid "Looking for updates"
 msgstr ""
 
 msgid "No updates available"
-msgstr ""
-
-msgid "Online help"
 msgstr ""
 
 msgid "Outdated components remain active until next start"
@@ -74,10 +74,7 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-msgid "Update checker Online help"
-msgstr ""
-
-msgid "https://peter88213.github.io/nvhelp-en"
+msgid "Update checker plugin help"
 msgstr ""
 
 msgid "unknown"

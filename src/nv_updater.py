@@ -16,17 +16,19 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 """
-from nvupdater.nvupdater_locale import _
 from nvlib.controller.plugin.plugin_base import PluginBase
+from nvupdater.nvupdater_globals import HELP_PAGE
+from nvupdater.nvupdater_locale import _
 from nvupdater.update_service import UpdateService
 
 
 class Plugin(PluginBase):
     """Plugin class for the novelibre update checker."""
     VERSION = '@release'
-    API_VERSION = '5.26'
+    API_VERSION = '5.63'
     DESCRIPTION = 'Update checker'
     URL = 'https://github.com/peter88213/nv_updater'
+    HELP_PAGE = HELP_PAGE
 
     def install(self, model, view, controller):
         """Install the plugin at runtime.
@@ -42,7 +44,7 @@ class Plugin(PluginBase):
         self.updateService = UpdateService(model, view, controller)
         self._icon = self._get_icon('update.png')
 
-        #--- Configure the main menu.
+        #--- Configure the user interface.
 
         # Add an entry to the Tools menu.
         label = _('Check for updates')
@@ -53,12 +55,5 @@ class Plugin(PluginBase):
             command=self.updateService.check_for_updates,
         )
 
-        # Add an entry to the Help menu.
-        label = _('Update checker Online help')
-        self._ui.helpMenu.add_command(
-            label=label,
-            image=self._icon,
-            compound='left',
-            command=self.updateService.open_help,
-        )
+        self._add_help_menu_entry(_('Update checker plugin help'))
 

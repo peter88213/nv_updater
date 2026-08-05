@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.3.3\n"
+"Project-Id-Version: 5.4.0\n"
 "POT-Creation-Date: 2025-08-16 15:26:06\n"
-"PO-Revision-Date: 2026-07-20 19:46:10\n"
+"PO-Revision-Date: 2026-08-05 16:03:05\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,9 @@ msgstr "Ab"
 msgid "Finished"
 msgstr "Fertig"
 
+msgid "Help"
+msgstr "Hilfe"
+
 msgid "Home page"
 msgstr "Homepage"
 
@@ -48,9 +51,6 @@ msgstr "Suche Updates"
 
 msgid "No updates available"
 msgstr "Keine Updates verfügbar"
-
-msgid "Online help"
-msgstr "Online-Hilfe"
 
 msgid "Outdated components remain active until next start"
 msgstr "Veraltete Komponenten bleiben bis zum nächsten Start aktiv"
@@ -73,11 +73,8 @@ msgstr "Auf"
 msgid "Update"
 msgstr "Aktualisieren"
 
-msgid "Update checker Online help"
-msgstr "Update-Prüfer Online-Hilfe"
-
-msgid "https://peter88213.github.io/nvhelp-en"
-msgstr "https://peter88213.github.io/nvhelp-de"
+msgid "Update checker plugin help"
+msgstr "Update-Prüfer-Plugin Hilfe"
 
 msgid "unknown"
 msgstr "unbekannt"

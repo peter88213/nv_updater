@@ -12,7 +12,7 @@ import webbrowser
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.widgets.modal_dialog import ModalDialog
-from nvupdater.nvupdater_help import NvupdaterHelp
+from nvupdater.nvupdater_globals import HELP_PAGE
 from nvupdater.nvupdater_locale import _
 import tkinter as tk
 
@@ -22,6 +22,10 @@ class UpdateManager(ModalDialog, SubController):
     MIN_HEIGHT = 450
 
     def __init__(self, model, view, controller, **kw):
+
+        def open_help_page(event=None):
+            self._ctrl.helpService.open_help_page(HELP_PAGE)
+
         super().__init__(view, **kw)
         self._mdl = model
         self._ui = view
@@ -125,12 +129,12 @@ class UpdateManager(ModalDialog, SubController):
         # "Help" button.
         ttk.Button(
             self._footer,
-            text=_('Online help'),
-            command=NvupdaterHelp.open_help_page,
+            text=_('Help'),
+            command=open_help_page,
         ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
-        self.bind(KEYS.OPEN_HELP[0], NvupdaterHelp.open_help_page)
+        self.bind(KEYS.OPEN_HELP[0], open_help_page)
         self._repoList.bind('<Double-1>', self._update_module)
 
         # Populate the list.

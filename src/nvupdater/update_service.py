@@ -6,7 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.controller.services.service_base import ServiceBase
 from nvlib.gui.set_icon_tk import set_icon
-from nvupdater.nvupdater_help import NvupdaterHelp
 from nvupdater.update_manager import UpdateManager
 
 
@@ -21,6 +20,3 @@ class UpdateService(ServiceBase):
         set_icon(self.updaterDialog, icon='update', default=False)
         self.updaterDialog.check_repos()
 
-    def open_help(self):
-        """Show the nv_updater online help page."""
-        NvupdaterHelp.open_help_page()
