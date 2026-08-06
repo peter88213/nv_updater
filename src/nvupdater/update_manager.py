@@ -24,7 +24,7 @@ class UpdateManager(ModalDialog, SubController):
     def __init__(self, model, view, controller, **kw):
 
         def open_help_page(event=None):
-            self._ctrl.helpService.open_help_page(HELP_PAGE)
+            self._ctrl.open_help(page=HELP_PAGE)
 
         super().__init__(view, **kw)
         self._mdl = model
