@@ -98,12 +98,12 @@ class UpdateManager(ModalDialog, SubController):
         self._messagingArea = tk.Label(self, fg='white', bg='green')
         self._messagingArea.pack(fill='x')
 
-        self._footer = ttk.Frame(self)
-        self._footer.pack(fill='both', expand=False)
+        footer = tk.Frame(self)
+        footer.pack(fill='both', expand=False)
 
         # "Update" button.
         self._updateButton = ttk.Button(
-            self._footer,
+            footer,
             text=_('Update'),
             command=self._update_module,
             state='disabled',
@@ -112,7 +112,7 @@ class UpdateManager(ModalDialog, SubController):
 
         # "Home page" button.
         self._homeButton = ttk.Button(
-            self._footer,
+            footer,
             text=_('Home page'),
             command=self._open_homepage,
             state='disabled',
@@ -121,14 +121,14 @@ class UpdateManager(ModalDialog, SubController):
 
         # "Close" button.
         ttk.Button(
-            self._footer,
+            footer,
             text=_('Close'),
             command=self.on_quit,
         ).pack(padx=5, pady=5, side='right')
 
         # "Help" button.
         ttk.Button(
-            self._footer,
+            footer,
             text=_('Help'),
             command=open_help_page,
         ).pack(padx=5, pady=5, side='right')
