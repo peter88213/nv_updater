@@ -19,7 +19,7 @@ import tkinter as tk
 
 class UpdateManager(ModalDialog, SubController):
 
-    MIN_HEIGHT = 450
+    MIN_HEIGHT = 500
 
     def __init__(self, model, view, controller, **kw):
 
@@ -30,30 +30,33 @@ class UpdateManager(ModalDialog, SubController):
         self._mdl = model
         self._ui = view
         self._ctrl = controller
+
+        self.title(f'{_("Check for updates")} - novelibre @release')
         self.minsize(1, self.MIN_HEIGHT)
+        self.protocol("WM_DELETE_WINDOW", self.on_quit)
+
         self._downloadUrls = {}
         self._download = False
         self._stopSearching = False
 
-        self.title(f'{_("Check for updates")} - novelibre @release')
-
-        self.protocol("WM_DELETE_WINDOW", self.on_quit)
+        treeWindow = ttk.Frame(self)
+        treeWindow.pack(fill='both', expand=True)
 
         columns = 'Plugin', 'Installed version', 'Latest version'
         self._repoList = ttk.Treeview(
-            self, columns=columns,
+            treeWindow,
+            columns=columns,
             show='headings',
             selectmode='browse',
         )
 
-        # scrollY = ttk.Scrollbar(
-        #    self.moduleCollection, orient='vertical',
-        #    command=self.moduleCollection.yview,
-        # )
-        # self.moduleCollection.configure(yscrollcommand=scrollY.set)
-        # scrollY.pack(side='right', fill='y')
-        #--- unsolved problem: adding a scollbar
-        #    makes the window shrink to minimum
+        scrollY = ttk.Scrollbar(
+           treeWindow,
+           orient='vertical',
+           command=self._repoList.yview,
+        )
+        self._repoList.configure(yscrollcommand=scrollY.set)
+        scrollY.pack(side='right', fill='y')
 
         self._repoList.pack(fill='both', expand=True)
         self._repoList.bind('<<TreeviewSelect>>', self._on_select_plugin)
