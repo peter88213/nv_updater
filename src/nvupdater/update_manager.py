@@ -77,7 +77,7 @@ class UpdateManager(ModalDialog, SubController):
         )
         self._repoList.column(
             'Installed version',
-            width=100,
+            width=120,
             minwidth=100,
             stretch=False,
         )
@@ -88,7 +88,7 @@ class UpdateManager(ModalDialog, SubController):
         )
         self._repoList.column(
             'Latest version',
-            width=100,
+            width=120,
             minwidth=100,
             stretch=False,
         )
