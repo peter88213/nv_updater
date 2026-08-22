@@ -5,6 +5,15 @@
 ## Changelog
 
 
+### Version 5.4.3
+
+- Added a scrollbar.
+- The update manager is no longer resizable.
+
+API: 5.63
+Based on novelibre 5.65.1
+
+
 ### Version 5.4.2
 
 - Update for better "dark mode" support.
