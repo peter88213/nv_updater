@@ -31,7 +31,7 @@ class UpdateManager(ModalDialog, SubController):
         self._ui = view
         self._ctrl = controller
 
-        self.title(f'{_("Check for updates")} - novelibre @release')
+        self.title(f'{_("Check for updates")} - novelibre')
         self.minsize(1, self.MIN_HEIGHT)
         self.protocol("WM_DELETE_WINDOW", self.on_quit)
 

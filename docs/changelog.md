@@ -5,6 +5,14 @@
 ## Changelog
 
 
+### Version 5.4.5
+
+- Changed the window title.
+
+API: 5.63
+Based on novelibre 5.65.1
+
+
 ### Version 5.4.4
 
 - Changed the list header according to the documentation.
