@@ -42,7 +42,7 @@ class UpdateManager(ModalDialog, SubController):
         treeWindow = ttk.Frame(self)
         treeWindow.pack(fill='both', expand=True)
 
-        columns = 'Plugin', 'Installed version', 'Latest version'
+        columns = 'Component', 'Installed version', 'Latest version'
         self._repoList = ttk.Treeview(
             treeWindow,
             columns=columns,
@@ -65,14 +65,14 @@ class UpdateManager(ModalDialog, SubController):
         self._repoList.tag_configure('inactive', foreground='gray')
 
         self._repoList.column(
-            'Plugin',
+            'Component',
             width=150,
             minwidth=120,
             stretch=False,
         )
         self._repoList.heading(
-            'Plugin',
-            text=_('Plugin'),
+            'Component',
+            text=_('Component'),
             anchor='w',
         )
         self._repoList.column(
