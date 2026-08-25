@@ -195,9 +195,11 @@ class UpdateManager(ModalDialog, SubController):
                 continue
 
             try:
-                (majorVersion,
-                 minorVersion,
-                 patchlevel) = self._ctrl.plugins[repoName].VERSION.split('.')
+                (
+                    majorVersion,
+                    minorVersion,
+                    patchlevel
+                ) = self._ctrl.plugins[repoName].VERSION.split('.')
                 current = (
                     int(majorVersion),
                     int(minorVersion),
@@ -208,10 +210,12 @@ class UpdateManager(ModalDialog, SubController):
                 current = (0, 0, 0)
                 currentStr = _('unknown')
             try:
-                (majorVersion,
-                 minorVersion,
-                 patchlevel,
-                 downloadUrl) = self._get_remote_data(repoName)
+                (
+                    majorVersion,
+                    minorVersion,
+                    patchlevel,
+                    downloadUrl
+                 ) = self._get_remote_data(repoName)
                 latest = (majorVersion, minorVersion, patchlevel)
                 latestStr = f'{majorVersion}.{minorVersion}.{patchlevel}'
             except:
@@ -228,7 +232,7 @@ class UpdateManager(ModalDialog, SubController):
                 repoName,
                 [repoName, currentStr, latestStr],
                 tags=tags,
-                )
+            )
         if not found:
             self._output(f"{_('No updates available')}.")
         else:
@@ -259,7 +263,7 @@ class UpdateManager(ModalDialog, SubController):
                 f'{self._ctrl.plugins.patchlevel}'
             ),
             f"{_('wait')} ...",
-            ]
+        ]
         self._repoList.insert('', 'end', 'novelibre', values=appValues)
 
         for repoName in self._ctrl.plugins:
