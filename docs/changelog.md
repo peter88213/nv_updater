@@ -5,6 +5,14 @@
 ## Changelog
 
 
+### Version 5.5.0
+
+- Checking the internet connection before looking for updates.
+
+API: 5.63
+Based on novelibre 5.65.2
+
+
 ### Version 5.4.5
 
 - Changed the window title.
