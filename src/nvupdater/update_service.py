@@ -35,6 +35,7 @@ class UpdateService(ServiceBase):
 
         if not is_connected():
             self._ui.show_error(
+                title=_('Check for updates'),
                 message=f"{_('Cannot connect via the internet')}:",
                 detail=self.HOST,
             )
